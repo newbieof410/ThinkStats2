@@ -13,6 +13,19 @@ import sys
 import nsfg
 import thinkstats2
 
+def ReadFemResp(dct_file='2002FemResp.dct',
+                dat_file='2002FemResp.dat.gz',
+                nrows=None):
+    dct = thinkstats2.ReadStataDct(dct_file)
+    df = dct.ReadFixedWidth(dat_file, compression='gzip', nrows=nrows)
+
+    return df
+
+
+def Solution():
+    df = ReadFemResp()
+    print(df.pregnum.value_counts().sort_index())
+
 
 def main(script):
     """Tests the functions in this module.
@@ -23,4 +36,5 @@ def main(script):
 
 
 if __name__ == '__main__':
-    main(*sys.argv)
+    # main(*sys.argv)
+    Solution()
